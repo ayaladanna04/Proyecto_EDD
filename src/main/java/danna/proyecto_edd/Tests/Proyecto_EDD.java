@@ -10,7 +10,6 @@ package danna.proyecto_edd.Tests;
  */
 import danna.proyecto_edd.Modelo.*;
 import danna.proyecto_edd.Estructura.*;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Proyecto_EDD {
