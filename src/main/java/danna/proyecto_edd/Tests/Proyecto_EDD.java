@@ -25,10 +25,11 @@ public class Proyecto_EDD {
                 case 1 -> crearPersona();
                 case 2 -> crearEmpresa();
                 case 3 -> listarContactos();
-                case 4 -> System.out.println("Saliendo...");
+                case 4 -> eliminarContacto();
+                case 5 -> System.out.println("Saliendo...");
                 default -> System.out.println("Opción inválida.");
             }
-        } while (opcion != 4);
+        } while (opcion != 5);
     }
 
     private static void mostrarMenu() {
@@ -36,7 +37,8 @@ public class Proyecto_EDD {
         System.out.println("1. Crear contacto persona");
         System.out.println("2. Crear contacto empresa");
         System.out.println("3. Listar contactos");
-        System.out.println("4. Salir");
+        System.out.println("4. Eliminar contacto por nombre");
+        System.out.println("5. Salir");
         System.out.print("Seleccione una opción: ");
     }
 
@@ -122,5 +124,24 @@ public class Proyecto_EDD {
             }
             System.out.println();
         }
+    }
+
+    private static void eliminarContacto() {
+        if (contactos.estaVacia()) {
+            System.out.println("No hay contactos para eliminar.\n");
+            return;
+        }
+
+        System.out.print("Ingrese el nombre del contacto a eliminar: ");
+        String nombreEliminar = sc.nextLine();
+
+        for (Contacto c : contactos) {
+            if (c.getNombre().equalsIgnoreCase(nombreEliminar)) {
+                contactos.eliminar(c);
+                System.out.println("Contacto eliminado exitosamente.\n");
+                return;
+            }
+        }
+        System.out.println("Contacto no encontrado.\n");
     }
 }

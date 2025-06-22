@@ -1,6 +1,5 @@
 package danna.proyecto_edd.Util;
 
-import java.util.function.Predicate;
 import danna.proyecto_edd.Modelo.*;
 import danna.proyecto_edd.Estructura.*;
 
