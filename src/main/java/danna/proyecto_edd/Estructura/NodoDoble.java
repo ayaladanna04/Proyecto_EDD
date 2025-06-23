@@ -1,6 +1,8 @@
 package danna.proyecto_edd.Estructura;
 
-public class NodoDoble<T> {
+import java.io.Serializable;
+
+public class NodoDoble<T> implements Serializable {
     T dato;
     NodoDoble<T> siguiente;
     NodoDoble<T> anterior;

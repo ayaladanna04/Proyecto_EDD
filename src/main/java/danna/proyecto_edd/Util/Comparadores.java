@@ -22,5 +22,21 @@ public class Comparadores {
             return 0;
         };
     }
+
+    public static Comparator<Contacto> porApellidoYprimerNombre () {
+        return (c1, c2) -> {
+            if (c1 instanceof Persona && c2 instanceof Persona) {
+                Persona p1 = (Persona) c1;
+                Persona p2 = (Persona) c2;
+                int result = p1.getApellido().compareToIgnoreCase(p2.getApellido());
+                if(result!=0){
+                    return result;
+                }
+                return p1.getNombre().compareToIgnoreCase(p2.getNombre());
+            }
+            return 0;
+        };
+    }
+   
 }
 
