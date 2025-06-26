@@ -179,10 +179,11 @@ public class GestorContacto {
                 case 1 -> GestorAtributos.crearAtributo(contactoEditar,sc);
                 case 2 -> GestorAtributos.editarAtributo(contactoEditar,sc);
                 case 3 -> GestorAtributos.removerAtributo(contactoEditar,sc);
-                case 4 -> System.out.println("Saliendo...");
+                case 4 -> GestorAtributos.removerFoto(contactoEditar,sc);
+                case 5 -> System.out.println("Saliendo...");
                 default -> System.out.println("Opción inválida.");
             }
-        while (op != 4);  
+        while (op != 5);  
      }
      // metodo para almacenar los cambios realizados
      public static void guardarCambios() {

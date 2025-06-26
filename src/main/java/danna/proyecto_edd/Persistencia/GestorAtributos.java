@@ -16,7 +16,8 @@ public class GestorAtributos {
         System.out.println("1. Crear Atributo persona");
         System.out.println("2. Editar Atributo persona");
         System.out.println("3. Eliminar Atributo persona");
-        System.out.println("4. Salir");
+        System.out.println("4. Eliminar Foto persona");
+        System.out.println("5. Salir");
         System.out.print("Seleccione una opción: ");
     }
      public static void crearAtributo( Contacto c, Scanner sc){
@@ -60,5 +61,9 @@ public class GestorAtributos {
            }
                System.out.println("Atributo no encontrado.\n");
 
+     }
+     public static void removerFoto( Contacto c, Scanner sc){
+          System.out.print("Cantidad de atributos a ingresar: ");
+          int n = Validar.validarNumero(sc);
      }
 }
