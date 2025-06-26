@@ -36,14 +36,12 @@ public class Proyecto_EDD {
         do {
             GestorContacto.mostrarMenu();
             opcion=Validar.validarNumero(sc);
-
-
             switch (opcion) {
                 case 1 -> GestorContacto.crearPersona();
                 case 2 -> GestorContacto.crearEmpresa();
                 case 3 -> GestorContacto.listarContactos();
                 case 4 -> GestorContacto.editarContacto();
-                case 5 ->GestorContacto. eliminarContacto();
+                case 5 -> GestorContacto. eliminarContacto();
                 case 6 -> System.out.println("Saliendo...");
                 default -> System.out.println("Opción inválida.");
             }

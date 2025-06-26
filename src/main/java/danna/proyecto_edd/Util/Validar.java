@@ -3,9 +3,6 @@ package danna.proyecto_edd.Util;
 import java.util.Scanner;
 
 public class Validar {
-            private static final Scanner sc = new Scanner(System.in);
-
-
     //  Validar datos ingresados por el usuario
     public static String validarTexto(Scanner sc){ 
         //cadena ingresada

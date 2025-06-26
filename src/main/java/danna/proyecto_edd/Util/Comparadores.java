@@ -4,9 +4,14 @@ import java.util.Comparator;
 import danna.proyecto_edd.Modelo.*;
 
 public class Comparadores {
-    public static Comparator<Contacto> porNombre() {
+    /*public static Comparator<Contacto> porNombre() {
         return (c1, c2) -> c1.getNombre().compareToIgnoreCase(c2.getNombre());
-    }
+    }*/
+    public static Comparator<Contacto> porNombre() {
+        return Comparator
+        .comparing(Contacto::getNombre);
+      }
+
 
     public static Comparator<Contacto> porCantidadAtributos() {
         return (c1, c2) -> Integer.compare(c2.getAtributos().tamanio(), c1.getAtributos().tamanio());

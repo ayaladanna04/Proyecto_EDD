@@ -10,7 +10,6 @@ import danna.proyecto_edd.Modelo.Empresa;
 import danna.proyecto_edd.Modelo.Foto;
 import danna.proyecto_edd.Modelo.Persona;
 import danna.proyecto_edd.Util.Validar;
-import danna.proyecto_edd.Persistencia.GestorAtributos;
 
 public class GestorContacto {
     private static final Scanner sc = new Scanner(System.in);
@@ -145,13 +144,18 @@ public class GestorContacto {
         }
         System.out.println("Contacto no encontrado.\n");
     }
-     // terminar 
+     //Editar Contacto
      public static void editarContacto() {
         //verificar contenido de la lista
          if (contactos.estaVacia()) {
-        System.out.println("No hay contactos para editar.");
-        return;
-        }
+         System.out.println("No hay contactos para editar.");
+         return;
+         }
+        //Mostrar todos los contactos 
+        System.out.println("\n--- Contactos ---");
+          for (Contacto c : contactos) {
+          System.out.println("- " + c.getNombre() );
+          }
         //Opciones de edición  : crear, eliminar y editar atributo
         System.out.print("Ingrese el nombre del contacto a editar: ");
         //ingreso de contacto a modificar
@@ -172,13 +176,23 @@ public class GestorContacto {
         GestorAtributos.mostrarMenuAtributos();
             op = Validar.validarNumero(sc);
             switch (op) {
-                case 1 -> GestorAtributos.crearAtributo();
-                case 2 -> GestorAtributos.editarAtributo();
-                case 3 -> GestorAtributos.removerAtributo();
+                case 1 -> GestorAtributos.crearAtributo(contactoEditar,sc);
+                case 2 -> GestorAtributos.editarAtributo(contactoEditar,sc);
+                case 3 -> GestorAtributos.removerAtributo(contactoEditar,sc);
                 case 4 -> System.out.println("Saliendo...");
                 default -> System.out.println("Opción inválida.");
             }
         while (op != 4);  
      }
+     // metodo para almacenar los cambios realizados
+     public static void guardarCambios() {
+    try {
+        GestorArchivos.guardarLista("contactos.dat", contactos);
+        System.out.println("¡Cambios guardados!");
+    } catch (IOException e) {
+        System.out.println("No se pudo guardar.");
+    }
+}
+
 
 }
