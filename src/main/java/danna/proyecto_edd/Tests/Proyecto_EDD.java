@@ -12,7 +12,6 @@ import danna.proyecto_edd.Modelo.*;
 import danna.proyecto_edd.Persistencia.GestorArchivos;
 import danna.proyecto_edd.Persistencia.GestorContacto;
 import danna.proyecto_edd.Util.Validar;
-import danna.proyecto_edd.inicioSesion.ValidadorLogin;
 import danna.proyecto_edd.Estructura.*;
 import java.io.IOException;
 import java.util.Scanner;
@@ -29,8 +28,22 @@ public class Proyecto_EDD {
             // System.out.println("No existe una lista");
             contactos= new ListaDobleCircular<>();    
         }
-
-        
+        GestorContacto.setContactos(contactos);
+    
+         int opcion;
+        do {
+            GestorContacto.mostrarMenu();
+            opcion=Validar.validarNumero(sc);
+            switch (opcion) {
+                case 1 -> GestorContacto.crearPersona();
+                case 2 -> GestorContacto.crearEmpresa();
+                case 3 -> GestorContacto.listarContactos();
+                case 4 -> GestorContacto.editarContacto();
+                case 5 -> GestorContacto. eliminarContacto();
+                case 6 -> System.out.println("Saliendo...");
+                default -> System.out.println("Opción inválida.");
+            }
+        } while (opcion != 6);
     }
 
    
