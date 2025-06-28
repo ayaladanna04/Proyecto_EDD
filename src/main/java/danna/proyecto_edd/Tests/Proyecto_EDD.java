@@ -22,46 +22,12 @@ public class Proyecto_EDD {
     private static ListaDobleCircular<Contacto> contactos;
 
     public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-        ValidadorLogin validador = new ValidadorLogin("usuarios.dat");
-
-        System.out.print("Ingrese usuario: ");
-        String usuario = sc.nextLine();
-
-        System.out.print("Ingrese contraseña: ");
-        String contrasena = sc.nextLine();
-
-        if (validador.validar(usuario, contrasena)) {
-            System.out.println("Inicio de sesión exitoso.");
-
-            try{
-                contactos= GestorArchivos.cargarLista(usuario+".dat");
-                System.out.println("Lista cargada desde archivo. ");
-                }catch(IOException|ClassNotFoundException e){
-                // System.out.println("No existe una lista");
-                contactos= new ListaDobleCircular<>();
-                // Pasamos la lista cargada o nueva al gestor
-                    
-            }
-            GestorContacto.setContactos(contactos);
-        
-            int opcion;
-            do {
-                GestorContacto.mostrarMenu();
-                opcion=Validar.validarNumero(sc);
-                switch (opcion) {
-                    case 1 -> GestorContacto.crearPersona();
-                    case 2 -> GestorContacto.crearEmpresa();
-                    case 3 -> GestorContacto.listarContactos();
-                    case 4 -> GestorContacto.editarContacto();
-                    case 5 -> GestorContacto. eliminarContacto();
-                    case 6 -> System.out.println("Saliendo...");
-                    default -> System.out.println("Opción inválida.");
-                }
-            } while (opcion != 6);
-        } else {
-            System.out.println("Usuario o contraseña incorrectos.");
+        try{
+            contactos= GestorArchivos.cargarLista("contactos.dat");
+            System.out.println("Lista cargada desde archivo.");
+            }catch(IOException|ClassNotFoundException e){
+            // System.out.println("No existe una lista");
+            contactos= new ListaDobleCircular<>();    
         }
 
         
