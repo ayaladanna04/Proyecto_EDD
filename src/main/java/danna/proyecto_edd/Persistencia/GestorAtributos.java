@@ -5,7 +5,7 @@ import java.util.Scanner;
 import danna.proyecto_edd.Estructura.ListaDobleCircular;
 import danna.proyecto_edd.Modelo.Atributo;
 import danna.proyecto_edd.Modelo.Contacto;
-
+import danna.proyecto_edd.Modelo.Foto;
 import danna.proyecto_edd.Util.Validar;
 
 public class GestorAtributos {
@@ -33,9 +33,38 @@ public class GestorAtributos {
         GestorContacto.guardarCambios();
      }
      public static void editarAtributo(Contacto c, Scanner sc){
-          
+        ListaDobleCircular<Atributo> lista = c.getAtributos();
+
+          if (lista.estaVacia()) {
+            System.out.println("Este contacto no tiene atributos para editar.\n");
+            return;
+          }
+          while(true) {
+             System.out.println("\n--- Atributos del contacto ---");
+            for (Atributo a : lista) {
+                System.out.println("- " + a.getNombre() + ": " + a.getValor());
+            }
+
+           System.out.print("Seleccione un atributo para editar: ");
+           String atributoEditar = Validar.validarTexto(sc);
+
+            for (Atributo a :lista ) {
+                if (a.getNombre().equalsIgnoreCase(atributoEditar)) {
+                //Solicitar atributo
+                System.out.println("Ingrese el nuevo valor para :"+ a.getNombre());
+                String valor= sc.nextLine();
+                a.setValor(valor);
+                System.out.println("Atributo editado exitosamente.\n");
+                GestorContacto.guardarCambios();
+
+                return;
+                }
+           }
+               System.out.println("Atributo no encontrado.\n");
+
 
           }
+        }
      
           
      public static void removerAtributo(Contacto c, Scanner sc){
@@ -63,7 +92,7 @@ public class GestorAtributos {
                System.out.println("Atributo no encontrado.\n");
 
      }
-     /*public static void removerFoto( Contacto c, Scanner sc){
+     public static void removerFoto( Contacto c, Scanner sc){
           ListaDobleCircular<Foto> lista = c.getFotos();
           if (lista.estaVacia()) {
           System.out.println("Este contacto no tiene fotos para eliminar.\n");
@@ -73,13 +102,13 @@ public class GestorAtributos {
           for (Foto f : lista) {
           System.out.println("- " + f.getUrl());
           }
-           System.out.print("Seleccione un atributo para eliminar: ");
+           System.out.print("Escriba el nombre de la foto a eliminar: ");
            String fotoEliminar = Validar.validarTexto(sc);
 
-        for (Foto f :f.getUrl() ) {
-            if (a.getNombre().equalsIgnoreCase(fotoEliminar)) {
-                c.getAtributos().eliminar(a);
-                System.out.println("Contacto eliminado exitosamente.\n");
+        for (Foto f : lista ) {
+            if (f.getUrl().equalsIgnoreCase(fotoEliminar)) {
+                lista.eliminar(f);
+                System.out.println("Foto eliminado exitosamente.\n");
                  GestorContacto.guardarCambios();
                 return;
             }
@@ -87,5 +116,5 @@ public class GestorAtributos {
                System.out.println("Atributo no encontrado.\n");
 
      }
-               */
+               
 }
