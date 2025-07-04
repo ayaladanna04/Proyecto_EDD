@@ -3,7 +3,7 @@ package danna.proyecto_edd.Estructura;
 import java.io.Serializable;
 
 public class NodoDoble<T> implements Serializable {
-    T dato;
+    public T dato;
     NodoDoble<T> siguiente;
     NodoDoble<T> anterior;
 

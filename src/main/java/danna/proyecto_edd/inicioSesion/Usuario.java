@@ -1,6 +1,5 @@
 package danna.proyecto_edd.inicioSesion;
 
-
 public class Usuario {
     private String usuario;
     private String contrasena;

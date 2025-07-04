@@ -24,7 +24,7 @@ public class Proyecto_EDD {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        ValidadorLogin validador = new ValidadorLogin("usuarios.dat");
+        ValidadorLogin validador = new ValidadorLogin("/Users/joeybustamante/Documents/GitHub/Proyecto_EDD/src/main/java/danna/proyecto_edd/inicioSesion/Credenciales.txt");
 
         System.out.print("Ingrese usuario: ");
         String usuario = sc.nextLine();
@@ -33,13 +33,13 @@ public class Proyecto_EDD {
         String contrasena = sc.nextLine();
 
         if (validador.validar(usuario, contrasena)) {
-            System.out.println("Inicio de sesión exitoso.");
+            System.out.println(" Inicio de sesión exitoso.");
 
             try{
                 contactos= GestorArchivos.cargarLista(usuario+".dat");
-                System.out.println("Lista cargada desde archivo. ");
+                System.out.println("Lista cargada desde archivo.");
                 }catch(IOException|ClassNotFoundException e){
-                 System.out.println("No existe una lista");
+                // System.out.println("No existe una lista");
                 contactos= new ListaDobleCircular<>();
                 // Pasamos la lista cargada o nueva al gestor
                     
@@ -60,9 +60,13 @@ public class Proyecto_EDD {
                     default -> System.out.println("Opción inválida.");
                 }
             } while (opcion != 6);
+
+
         } else {
-            System.out.println("Usuario o contraseña incorrectos.");
+            System.out.println(" Usuario o contraseña incorrectos.");
         }
+
+
 
         
     }
