@@ -14,6 +14,7 @@ import danna.proyecto_edd.Util.Validar;
 public class GestorContacto {
     private static final Scanner sc = new Scanner(System.in);
     private static  ListaDobleCircular<Contacto> contactos;
+    private static String nombreUsuario;
 
 
     //Menu contactos
@@ -62,7 +63,7 @@ public class GestorContacto {
         } while(m<1);
 
         for (int i = 0; i < m; i++) {
-            System.out.print("Nombre del archivo de foto: "+(i+1));
+            System.out.print("Nombre del archivo de foto "+(i+1)+":");
             String foto = Validar.validarTexto(sc);
             p.getFotos().agregar(new Foto(foto));
         }
@@ -70,7 +71,7 @@ public class GestorContacto {
         contactos.agregar(p);
 
         try {
-        GestorArchivos.guardarLista("contactos.dat", contactos);
+        GestorArchivos.guardarLista(nombreUsuario + ".dat", contactos);
         System.out.println("¡Lista actualizada exitosamente!");
     } catch (IOException e) {
         System.err.println("No se pudo guardar el contacto.");
@@ -205,12 +206,15 @@ public class GestorContacto {
      // metodo para almacenar los cambios realizados
      public static void guardarCambios() {
     try {
-        GestorArchivos.guardarLista("contactos.dat", contactos);
+        GestorArchivos.guardarLista(nombreUsuario + ".dat", contactos);
         System.out.println("¡Cambios guardados!");
     } catch (IOException e) {
         System.out.println("No se pudo guardar.");
     }
 }
 
+public static void setNombreUsuario(String usuario) {
+    nombreUsuario = usuario;
+}
 
 }

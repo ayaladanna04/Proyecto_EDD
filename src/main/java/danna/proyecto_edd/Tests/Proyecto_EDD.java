@@ -39,7 +39,7 @@ public class Proyecto_EDD {
                 contactos= GestorArchivos.cargarLista(usuario+".dat");
                 System.out.println("Lista cargada desde archivo. ");
                 }catch(IOException|ClassNotFoundException e){
-                // System.out.println("No existe una lista");
+                 System.out.println("No existe una lista");
                 contactos= new ListaDobleCircular<>();
                 // Pasamos la lista cargada o nueva al gestor
                     
