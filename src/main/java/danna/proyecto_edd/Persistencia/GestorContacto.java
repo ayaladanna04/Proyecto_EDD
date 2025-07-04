@@ -51,15 +51,24 @@ public class GestorContacto {
             p.getAtributos().agregar(new Atributo(nomAttr, valAttr));
         }
 
-        System.out.print("Cantidad de fotos: ");
-        int m = Validar.validarNumero(sc);
+       System.out.println("Cantidad de fotos:");
+        int m;
+        //validar que se ingrese al menos 1 foto
+        do{
+             m = Validar.validarNumero(sc);
+            if(m<1){
+            System.out.println("Por favor ingrese al menos una foto.");
+            }
+        } while(m<1);
+
         for (int i = 0; i < m; i++) {
-            System.out.print("Nombre del archivo de foto: ");
+            System.out.print("Nombre del archivo de foto: "+(i+1));
             String foto = Validar.validarTexto(sc);
             p.getFotos().agregar(new Foto(foto));
         }
 
         contactos.agregar(p);
+
         try {
         GestorArchivos.guardarLista("contactos.dat", contactos);
         System.out.println("¡Lista actualizada exitosamente!");
@@ -87,11 +96,18 @@ public class GestorContacto {
             String valAttr = sc.nextLine();
             e.getAtributos().agregar(new Atributo(nomAttr, valAttr));
         }
+        System.out.println("Cantidad de fotos:");
+        int m;
+        //validar que se ingrese al menos 1 foto
+        do{
+             m = Validar.validarNumero(sc);
+            if(m<1){
+            System.out.println("Por favor ingrese al menos una foto.");
+            }
+        } while(m<1);
 
-        System.out.print("Cantidad de fotos: ");
-        int m = Validar.validarNumero(sc);
         for (int i = 0; i < m; i++) {
-            System.out.print("Nombre del archivo de foto: ");
+            System.out.print("Nombre del archivo de foto: "+(i+1));
             String foto = Validar.validarTexto(sc);
             e.getFotos().agregar(new Foto(foto));
         }
@@ -173,16 +189,18 @@ public class GestorContacto {
             return;
         }
         int op;
-        GestorAtributos.mostrarMenuAtributos();
+        do{
+            GestorAtributos.mostrarMenuAtributos();
             op = Validar.validarNumero(sc);
             switch (op) {
                 case 1 -> GestorAtributos.crearAtributo(contactoEditar,sc);
                 case 2 -> GestorAtributos.editarAtributo(contactoEditar,sc);
                 case 3 -> GestorAtributos.removerAtributo(contactoEditar,sc);
-                case 4 -> System.out.println("Saliendo...");
+                case 4 -> GestorAtributos.removerFoto(contactoEditar, sc);
+                case 5 -> System.out.println("Saliendo...");
                 default -> System.out.println("Opción inválida.");
             }
-        while (op != 4);  
+        }while (op != 5);  
      }
      // metodo para almacenar los cambios realizados
      public static void guardarCambios() {
