@@ -24,7 +24,7 @@ public class Proyecto_EDD {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        ValidadorLogin validador = new ValidadorLogin("C:\\Users\\danna\\OneDrive\\Escritorio\\5TO SEMESTRE\\ESTRUCTURAS DE DATOS\\Proyecto_EDD\\src\\main\\java\\danna\\proyecto_edd\\inicioSesion\\Credenciales.txt");
+        ValidadorLogin validador = new ValidadorLogin("/Users/joeybustamante/Documents/GitHub/Proyecto_EDD/src/main/java/danna/proyecto_edd/inicioSesion/Credenciales.txt");
 
         System.out.print("Ingrese usuario: ");
         String usuario = sc.nextLine();
@@ -56,10 +56,11 @@ public class Proyecto_EDD {
                     case 3 -> GestorContacto.listarContactos();
                     case 4 -> GestorContacto.editarContacto();
                     case 5 -> GestorContacto. eliminarContacto();
-                    case 6 -> System.out.println("Saliendo...");
+                    case 6 -> GestorContacto.agregarRelacion();
+                    case 7 -> System.out.println("Saliendo...");
                     default -> System.out.println("Opción inválida.");
                 }
-            } while (opcion != 6);
+            } while (opcion != 7);
 
 
         } else {

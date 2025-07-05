@@ -10,13 +10,14 @@ package danna.proyecto_edd.Modelo;
  */
 import java.io.Serializable;
 import danna.proyecto_edd.Estructura.*;
+import danna.proyecto_edd.Modelo.*;
 
 public abstract class Contacto implements Serializable {
     protected String nombre;
     protected ListaDobleCircular<Atributo> atributos;
     protected ListaDobleCircular<Foto> fotos;
     protected ListaDobleCircular<FechaInteres> fechas;
-    protected ListaDobleCircular<Contacto> relacionados;
+    protected ListaDobleCircular<ContactoRelacionado> relacionados;
 
     public Contacto(String nombre) {
         this.nombre = nombre;
@@ -42,7 +43,7 @@ public abstract class Contacto implements Serializable {
         return fechas;
     }
 
-    public ListaDobleCircular<Contacto> getRelacionados() {
+    public ListaDobleCircular<ContactoRelacionado> getRelacionados() {
         return relacionados;
     }
 }

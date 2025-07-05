@@ -98,6 +98,11 @@ public class GestorAtributos {
           System.out.println("Este contacto no tiene fotos para eliminar.\n");
                return;
           }
+          // No se puede eliminar si el contacto cuenta con solo 1 foto
+          if (lista.tamanio()==1){
+            System.out.println("No se puede eliminar la  única foto.");
+            return;
+          }
           System.out.println("\n--- Fotos del contacto ---");
           for (Foto f : lista) {
           System.out.println("- " + f.getUrl());

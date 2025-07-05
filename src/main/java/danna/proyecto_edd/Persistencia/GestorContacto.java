@@ -22,7 +22,8 @@ public class GestorContacto {
         System.out.println("3. Listar contactos");
         System.out.println("4. Editar contacto");
         System.out.println("5. Eliminar contacto por nombre");
-        System.out.println("6. Salir");
+        System.out.println("6. Relacionar contacto");
+        System.out.println("7. Salir");
         System.out.print("Seleccione una opción: ");
     }
 
@@ -177,9 +178,20 @@ public class GestorContacto {
         for (Foto f : c.getFotos()) {
             System.out.println(" - " + f);
         }
+        //mostrar contactos relacionados
+        if(!c.getRelacionados().estaVacia()){
+            System.out.println("Contactos Relacionados");
+            for(ContactoRelacionado cr : c.getRelacionados()){
+                System.out.println("-"+ cr.getContacto().getNombre()+ " "+ cr.getTipoRelacion());
+            }
+        } else {
+            System.out.println("No hay contactos relacionados.");
+        }
+
+        }
         System.out.println();
     }
-}
+
 
 
     // Eliminar contacto
@@ -260,6 +272,71 @@ public class GestorContacto {
             System.out.println("No se pudo guardar.");
             e.printStackTrace();
         }
+    }
+
+    //Método para relacionar contacto
+    public static void agregarRelacion() {
+        if(contactos.tamanio()< 2){
+            System.out.println("No hay suficientes contactos para asociar.");
+            return;
+        }
+        //Mostrar contactos
+        System.out.println("Lista de contactos:");
+        for(Contacto c: contactos){
+            System.out.println("*"+ c.getNombre());
+        }
+
+        System.out.println("Ingrese el nombre del primer contacto:");
+        String contacto1= Validar.validarTexto(sc);
+        Contacto c1 = buscarContacto(contacto1);
+
+        System.out.println("Ingrese el nombre del segundo contacto:");
+        String contacto2= Validar.validarTexto(sc);
+        Contacto c2 = buscarContacto(contacto2);
+
+        //validar
+        if (c1 == null || c2 == null) {
+            System.out.println("Uno o ambos contactos no fueron encontrados.");
+            return;
+        }
+
+        if (c1 == c2) {
+        System.out.println("No se puede relacionar un contacto consigo mismo.");
+            return;
+        }
+        // Tipo de relación
+        System.out.print("Ingrese el tipo de relación : ");
+        String tipoRelacion = Validar.validarTexto(sc);
+        //verificar relación
+
+        boolean relacionados = false;
+        
+        for(ContactoRelacionado r: c1.getRelacionados()){
+            if(r.getContacto().equals(c2)){
+                relacionados=true;
+                break;
+            }
+        }
+        if(relacionados){
+            System.out.println("Ya existe una relación entre los contactos.");
+            return;
+        }
+        //guardar cambios
+        c1.getRelacionados().agregar(new ContactoRelacionado(c2, tipoRelacion));
+        System.out.println("Contacto relacionado con exito.");
+        GestorContacto.guardarCambios();
+
+
+
+    }
+    //Método auxiliar
+    public static Contacto buscarContacto(String nombre){
+        for(Contacto c: contactos){
+            if(c.getNombre().equalsIgnoreCase(nombre)){
+                return c;
+            }
+        }
+        return null;
     }
 
     // Guardar cambios manualmente (si quieres)
